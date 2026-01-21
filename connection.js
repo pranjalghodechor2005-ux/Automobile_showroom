@@ -2,10 +2,10 @@ var mysql = require("mysql2");
 var util = require("util");
 
 var conn = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"",
-    database:"automobile_showroom"   
+    host:"blvsdefohetmgrgixns7-mysql.services.clever-cloud.com",
+    user:"ugj4sjeilsuqadyt",
+    password:"KnasOAIbsxk7Sf68HSBh",
+    database:"blvsdefohetmgrgixns7"   
 });
 
 conn.connect((err)=>{
