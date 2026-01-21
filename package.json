@@ -1,14 +1,11 @@
 {
   "dependencies": {
     "body-parser": "^2.2.2",
-    "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.2.1",
     "express-fileupload": "^1.5.2",
     "express-session": "^1.18.2",
-    "mysql": "^2.18.1",
     "mysql2": "^3.16.0",
-    "razorpay": "^2.9.6",
     "util": "^0.12.5"
   },
   "name": "automobile_showroom",
@@ -16,7 +13,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
