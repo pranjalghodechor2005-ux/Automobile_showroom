@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "express-fileupload": "^1.5.2",
+    "express-session": "^1.18.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.16.0",
+    "razorpay": "^2.9.6",
+    "util": "^0.12.5"
+  },
+  "name": "automobile_showroom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranjalghodechor2005-ux/Automobile_showroom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pranjalghodechor2005-ux/Automobile_showroom/issues"
+  },
+  "homepage": "https://github.com/pranjalghodechor2005-ux/Automobile_showroom#readme"
+}

@@ -1,0 +1,30 @@
+<div class="container mt-5">
+
+<h3 class="text-center mb-4">Our Services</h3>
+
+<div class="row">
+
+<% services.forEach(function(s){ %>
+
+<div class="col-md-4">
+<div class="service-card">
+
+<div class="img-box">
+<img src="/uploads/<%= s.image %>" class="img-fluid">
+<div class="plus-btn">+</div>
+</div>
+
+<div class="card-body text-center">
+<h5><%= s.title %></h5>
+<span>Starting from 
+<span class="price">$<%= s.price %></span></span>
+</div>
+
+</div>
+</div>
+
+<% }) %>
+
+</div>
+
+</div>

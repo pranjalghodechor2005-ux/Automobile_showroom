@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Car Repair Website</title>
+
+<!-- Bootstrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+.top-bar{
+    background:#f5f5f5;
+    font-size:14px;
+    margin-top: 1%;
+}
+body{
+padding-top:80px;
+}
+
+.navbar-brand img{
+width:150px;
+}
+
+.hero{
+    background:url('https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7') center/cover;
+    min-height:90vh;
+    position:relative;
+}
+.hero::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.6);
+}
+.hero-content{
+    position:relative;
+    color:#fff;
+    padding-top:150px;
+}
+.btn-orange{
+    background:#ff6b00;
+    color:#fff;
+}
+.btn-orange:hover{
+    background:#e05f00;
+}
+.contact-box{
+    background:#003b5c;
+    color:#fff;
+    padding:15px 20px;
+}
+
+.site-logo{
+width:140px;   
+height:auto;
+object-fit:contain;
+cursor:pointer;
+transition:0.3s;
+}
+
+.site-logo:hover{
+transform:scale(1.05);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar py-2">
+<div class="container d-flex justify-content-between align-items-center">
+
+    <div>
+        <i class="fa fa-map-marker-alt text-warning"></i>
+        1138 Havanna St, San Francisco CA 94108
+    </div>
+
+    <div>
+        <i class="fa fa-clock text-warning"></i>
+        Working Hours: Mon to Sat 9am - 7pm | Sunday Closed
+    </div>
+
+    <!-- SOCIAL ICONS -->
+    <div>
+        <a href="#" class="text-dark me-2"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-dark me-2"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-dark me-2"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="text-dark me-2"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="text-dark"><i class="fab fa-pinterest-p"></i></a>
+    </div>
+
+</div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+<div class="container">
+    <img src="data:image/png;base64,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" class="site-logo" alt="Logo">
+
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">ABOUT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="/services">SERVICES</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="page.html">PAGE</a></li> -->
+            <li class="nav-item"><a class="nav-link" href="/news">NEWS</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">CONTACT</a></li>
+        </ul>
+
+        <div class="contact-box ms-3">
+            <i class="fa fa-comments"></i>
+            Talk With Experts <br>
+            <b class="text-warning">(810) 920-0664</b>
+        </div>
+    </div>
+</div>
+</nav>
+
+<style>
+
+.about-banner{
+    background:url('images/man9.jpg') center/cover no-repeat;
+    height:350px;
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.about-banner::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+}
+
+.about-text{
+    position:relative;
+    z-index:1;
+    width:100%;
+}
+
+.about-text h1{
+    font-size:50px;
+    font-weight:700;
+}
+
+.line{
+    width:70px;
+    height:3px;
+    background:#fff;
+    margin:15px auto;
+}
+
+.breadcrumb-text{
+    font-size:16px;
+}
+
+.breadcrumb-text span{
+    color:#ff6b00;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ABOUT BANNER -->
+<section class="about-banner text-white text-center">
+
+<div class="container about-text">
+
+    <h1>Contact Us</h1>
+
+    <div class="line"></div>
+
+    <div class="breadcrumb-text">
+        Home &nbsp; / &nbsp; <span>Latest News</span>
+    </div>
+
+</div>
+
+</section>
+
+<style>
+
+body{
+background:#f5f8fb;
+}
+
+/* MAIN SECTION */
+.contact-section{
+padding:80px 0;
+}
+
+/* LEFT BOX */
+.contact-info{
+background:#043a5b;
+color:white;
+padding:50px 40px;
+height:100%;
+}
+
+.contact-info h4{
+font-weight:700;
+margin-bottom:30px;
+}
+
+.info-box{
+display:flex;
+gap:15px;
+margin-bottom:35px;
+}
+
+.info-icon{
+width:45px;
+height:45px;
+border:2px solid #ff6b00;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#ff6b00;
+font-size:20px;
+}
+
+.info-box h6{
+margin:0;
+font-size:15px;
+opacity:.8;
+}
+
+.info-box p{
+margin:0;
+font-weight:600;
+}
+
+/* RIGHT FORM */
+.form-box{
+padding:40px;
+background:white;
+}
+
+.form-box h2{
+font-weight:700;
+margin-bottom:20px;
+}
+
+.form-box small{
+color:#777;
+}
+
+.form-control{
+border-radius:0;
+padding:15px;
+}
+
+textarea{
+resize:none;
+height:160px;
+}
+
+.btn-send{
+background:#ff6b00;
+color:white;
+padding:14px 35px;
+border:none;
+font-weight:600;
+}
+
+.btn-send:hover{
+background:#ff4500;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="contact-section">
+<div class="container">
+<div class="row g-4">
+
+<!-- LEFT -->
+<div class="col-lg-4">
+<div class="contact-info">
+
+<h4>Contact Details</h4>
+
+<div class="info-box">
+<div class="info-icon">📍</div>
+<div>
+<h6>Head Office Address</h6>
+<p>354 Oakridge Lane, Camden<br>NJ 08102 - USA</p>
+</div>
+</div>
+
+<div class="info-box">
+<div class="info-icon">📞</div>
+<div>
+<h6>For Rental Support</h6>
+<p>+1(810) 799 4660 / 5660</p>
+</div>
+</div>
+
+<div class="info-box">
+<div class="info-icon">🌐</div>
+<div>
+<h6>The Office Hours</h6>
+<p>Mon - Sat 9am to 7pm</p>
+</div>
+</div>
+
+<div class="info-box">
+<div class="info-icon">✉</div>
+<div>
+<h6>Send Us Email</h6>
+<p>repair@my-domain.net</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- RIGHT -->
+<div class="col-lg-8">
+<div class="form-box">
+
+<h2>Send a Message</h2>
+<small>Your email address will not be published. Required fields are marked *</small>
+
+<div class="container mt-5">
+    <h2>Contact Us</h2>
+
+    <% if (success) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <form action="/contact/submit" method="POST">
+        <div class="mb-3">
+            <label class="form-label">Name *</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mobile *</label>
+            <input type="text" name="mobile" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Message *</label>
+            <textarea name="message" class="form-control" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<style>
+body{
+background:#f4f7fb;
+}
+
+.map-section{
+padding:60px 0;
+}
+
+.map-box{
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+</style>
+</head>
+
+<body>
+
+<section class="map-section">
+<div class="container">
+<div class="row">
+<div class="col-12 text-center mb-4">
+<h3 class="fw-bold">Our Live Location</h3>
+</div>
+
+<div class="col-12">
+<div class="map-box">
+<iframe 
+src="https://www.google.com/maps?q=camden,new%20jersey&output=embed"
+width="100%" 
+height="450" 
+style="border:0;" 
+allowfullscreen="" 
+loading="lazy" 
+referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+<style>
+
+body{
+    background:#fff;
+}
+
+
+.partner-section{
+    padding:80px 0;
+    text-align:center;
+}
+
+
+.big-text{
+    font-size:120px;
+    font-weight:900;
+    color:#f1f1f1;
+    letter-spacing:15px;
+    position:absolute;
+    width:100%;
+    top:-40px;
+    left:0;
+    z-index:-1;
+}
+
+.partner-section h6{
+    letter-spacing:4px;
+    font-weight:600;
+    margin-bottom:60px;
+}
+
+.logo-box{
+    filter: grayscale(100%);
+    transition:0.4s;
+}
+
+.logo-box:hover{
+    filter: grayscale(0%);
+    transform:scale(1.05);
+}
+
+.logo-box img{
+    width:150px;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="partner-section position-relative">
+
+    <div class="big-text">CARDAN</div>
+
+    <h6>TRUSTED BY OUR MILLIONS OF SATISFIED PARTNERS</h6>
+
+    <div class="container">
+        <div class="row justify-content-center g-4">
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/best_ouality.png" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/legendray_club.png" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/pit_stop.jpg" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/legendray_club.png" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/runnn.png" class="img-fluid">
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+
+
+<style>
+
+.newsletter{
+    background:#003b5c;
+    padding:60px 0;
+    position:relative;
+}
+
+.news-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.mail-icon{
+    width:120px;
+}
+
+.mail-icon img{
+    width:100%;
+}
+
+
+.news-text h2{
+    color:#fff;
+    font-weight:700;
+}
+
+.news-text p{
+    color:#cfd8dc;
+    margin:0;
+}
+
+.news-form{
+    display:flex;
+}
+
+.news-form input{
+    width:300px;
+    padding:15px;
+    border:none;
+}
+
+.news-form button{
+    background:#ff6b00;
+    color:#fff;
+    border:none;
+    padding:0 30px;
+    font-weight:700;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="newsletter">
+<div class="container">
+
+<div class="news-wrap">
+
+
+<div class="mail-icon">
+<img src="images/file.jpg">
+</div>
+
+
+<div class="news-text">
+<h2>Newsletter Subscription</h2>
+<p>Get Latest Auto News & Updates Directly To Inbox</p>
+</div>
+
+
+<div class="news-form">
+<input type="email" placeholder="Write your email ...">
+<button>SUBSCRIBE &nbsp; ➤</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<style>
+
+.footer{
+background:#001f33;
+padding:70px 0 20px;
+color:#ccc;
+font-family:Arial;
+}
+
+.footer h5{
+color:#fff;
+font-weight:700;
+margin-bottom:20px;
+position:relative;
+}
+
+.footer h5::after{
+content:'';
+width:30px;
+height:2px;
+background:#ff6b00;
+position:absolute;
+left:0;
+bottom:-8px;
+}
+
+.footer p{
+font-size:14px;
+line-height:26px;
+}
+
+.footer ul{
+list-style:none;
+padding:0;
+}
+
+.footer ul li{
+padding:7px 0;
+}
+
+.footer ul li::before{
+content:"•";
+color:#ff6b00;
+padding-right:10px;
+}
+
+.footer a{
+text-decoration:none;
+color:#ccc;
+}
+
+.footer a:hover{
+color:#ff6b00;
+}
+
+.call-box{
+margin-top:20px;
+display:flex;
+align-items:center;
+}
+
+.call-box i{
+font-size:40px;
+color:#fff;
+margin-right:15px;
+}
+
+.call-box span{
+color:#fff;
+font-size:22px;
+font-weight:700;
+}
+
+.social a{
+display:inline-block;
+background:#0a3a5f;
+width:35px;
+height:35px;
+line-height:35px;
+text-align:center;
+margin-right:8px;
+color:#fff;
+}
+
+.contact-box{
+display:flex;
+margin-bottom:20px;
+}
+
+.contact-box i{
+font-size:30px;
+margin-right:15px;
+color:#fff;
+}
+
+.bottom{
+border-top:1px solid #0a3a5f;
+margin-top:40px;
+padding-top:15px;
+text-align:center;
+font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<footer class="footer">
+<div class="container">
+<div class="row">
+
+<!-- LOGO -->
+<div class="col-md-3">
+<h5>CARDAN</h5>
+<p>
+Emod tempor incididunt sed labore dnim ad minim ips veniam quis nosts exercitation ullamco.
+</p>
+
+<div class="call-box">
+<i>📞</i>
+<div>
+<p class="mb-0">Talk With Our Experts</p>
+<span>(810) 920-4660</span>
+</div>
+</div>
+
+<div class="social mt-3">
+<a href="#">f</a>
+<a href="#">t</a>
+<a href="#">g+</a>
+<a href="#">in</a>
+<a href="#">v</a>
+</div>
+</div>
+
+<!-- SERVICES -->
+<div class="col-md-3">
+<h5>CARDAN SERVICES</h5>
+<ul>
+<li>Car Oil Change</li>
+<li>Purchase Inspection</li>
+<li>Auto Diagnostics</li>
+<li>Battery Problems</li>
+<li>Clutch & Brakes</li>
+<li>Engine Repair</li>
+<li>Filters & Exhaust</li>
+</ul>
+</div>
+
+<!-- ABOUT -->
+<div class="col-md-3">
+<h5>ABOUT COMPANY</h5>
+<ul>
+<li>About Cardan</li>
+<li>Fleet Maintenance</li>
+<li>Get a Career</li>
+<li>Service Areas</li>
+<li>Free Estimates</li>
+<li>Schedule Inspection</li>
+<li>Our Partners</li>
+</ul>
+</div>
+
+<!-- CONTACT -->
+<div class="col-md-3">
+<h5>GET IN TOUCH</h5>
+
+<div class="contact-box">
+<i>📞</i>
+<div>
+<p>For Repair Support</p>
+<b>+1(810) 799 4660 / 5660</b>
+</div>
+</div>
+
+<div class="contact-box">
+<i>⏰</i>
+<div>
+<p>The Working Hours</p>
+<b>Mon - Sat 9am to 7pm</b>
+</div>
+</div>
+
+<div class="contact-box">
+<i>✉</i>
+<div>
+<p>Send Us Email</p>
+<b>sellingcar@my-domain.com</b>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="bottom">
+(c)2020 <b>CARDAN</b> - Auto Repair Services. All rights reserved.  
+<a href="#">Terms & Conditions</a>
+</div>
+
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Car Repair Website</title>
+
+<!-- Bootstrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+.top-bar{
+    background:#f5f5f5;
+    font-size:14px;
+    margin-top: 1%;
+}
+body{
+padding-top:80px;
+}
+
+.navbar-brand img{
+width:150px;
+}
+
+.hero{
+    background:url('https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7') center/cover;
+    min-height:90vh;
+    position:relative;
+}
+.hero::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.6);
+}
+.hero-content{
+    position:relative;
+    color:#fff;
+    padding-top:150px;
+}
+.btn-orange{
+    background:#ff6b00;
+    color:#fff;
+}
+.btn-orange:hover{
+    background:#e05f00;
+}
+.contact-box{
+    background:#003b5c;
+    color:#fff;
+    padding:15px 20px;
+}
+.site-logo{
+width:140px;   
+height:auto;
+object-fit:contain;
+cursor:pointer;
+transition:0.3s;
+}
+
+.site-logo:hover{
+transform:scale(1.05);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar py-2">
+<div class="container d-flex justify-content-between align-items-center">
+
+    <div>
+        <i class="fa fa-map-marker-alt text-warning"></i>
+        1138 Havanna St, San Francisco CA 94108
+    </div>
+
+    <div>
+        <i class="fa fa-clock text-warning"></i>
+        Working Hours: Mon to Sat 9am - 7pm | Sunday Closed
+    </div>
+
+    <!-- SOCIAL ICONS -->
+    <div>
+        <a href="#" class="text-dark me-2"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-dark me-2"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-dark me-2"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="text-dark me-2"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="text-dark"><i class="fab fa-pinterest-p"></i></a>
+    </div>
+
+</div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+<div class="container">
+ <img src="data:image/png;base64,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" class="site-logo" alt="Logo">
+
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">ABOUT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="/services">SERVICES</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="page.html">PAGE</a></li> -->
+            <li class="nav-item"><a class="nav-link" href="/news">NEWS</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">CONTACT</a></li>
+        </ul>
+
+        <div class="contact-box ms-3">
+            <i class="fa fa-comments"></i>
+            Talk With Experts <br>
+            <b class="text-warning">(810) 920-0664</b>
+        </div>
+    </div>
+</div>
+</nav>
+
+<style>
+
+.about-banner{
+    background:url('images/about.jpg') center/cover no-repeat;
+    height:350px;
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.about-banner::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+}
+
+.about-text{
+    position:relative;
+    z-index:1;
+    width:100%;
+}
+
+.about-text h1{
+    font-size:50px;
+    font-weight:700;
+}
+
+.line{
+    width:70px;
+    height:3px;
+    background:#fff;
+    margin:15px auto;
+}
+
+.breadcrumb-text{
+    font-size:16px;
+}
+
+.breadcrumb-text span{
+    color:#ff6b00;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ABOUT BANNER -->
+<section class="about-banner text-white text-center">
+
+<div class="container about-text">
+
+    <h1>About Us</h1>
+
+    <div class="line"></div>
+
+    <div class="breadcrumb-text">
+        Home &nbsp; / &nbsp; <span>About Us</span>
+    </div>
+
+</div>
+
+</section>
+
+
+
+<style>
+    .features{
+background:#fff;
+}
+
+.feature-box{
+padding:40px 30px;
+border-radius:15px;
+transition:0.4s;
+cursor:pointer;
+}
+
+.feature-box:hover{
+transform:translateY(-10px);
+box-shadow:0 15px 40px rgba(0,0,0,0.12);
+}
+
+.active-box{
+box-shadow:0 15px 40px rgba(0,0,0,0.12);
+}
+
+.icon-box{
+width:75px;
+height:75px;
+background:#fff1e6;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:25px;
+transition:0.4s;
+}
+
+.feature-box:hover .icon-box{
+background:#0056b3;
+}
+
+.feature-box:hover .icon-box i{
+color:#fff;
+}
+
+.icon-box i{
+font-size:32px;
+color:#0056b3;
+transition:0.4s;
+}
+
+.feature-box h4{
+font-weight:700;
+margin-bottom:12px;
+}
+
+.feature-box p{
+color:#666;
+line-height:26px;
+}
+
+.feature-box a{
+color:#0056b3;
+font-weight:600;
+text-decoration:none;
+position:relative;
+}
+
+.feature-box a::after{
+content:'';
+position:absolute;
+width:0;
+height:2px;
+background:#ff6600;
+left:0;
+bottom:-4px;
+transition:0.4s;
+}
+
+.feature-box a:hover::after{
+width:100%;
+}
+
+.feature-box a i{
+color:#ff6600;
+margin-left:6px;
+transition:0.4s;
+}
+
+.feature-box a:hover i{
+transform:translateX(5px);
+}
+
+</style>
+<section class="features py-5">
+<div class="container">
+<div class="row text-center g-4">
+
+<div class="col-md-4">
+<div class="feature-box">
+<div class="icon-box">
+<i class="fa-solid fa-screwdriver-wrench"></i>
+</div>
+<h4>Modern Equipments</h4>
+<p>
+Enim venia quis nostrud excrit  
+ulamco laboris nsut aliquip com  
+conseq reprehenderit.
+</p>
+<a href="#">READ MORE <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="feature-box active-box">
+<div class="icon-box">
+<i class="fa-solid fa-car"></i>
+</div>
+<h4>Trusted Workshop</h4>
+<p>
+Enim venia quis nostrud excrit  
+ulamco laboris nsut aliquip com  
+conseq reprehenderit.
+</p>
+<a href="#">READ MORE <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="feature-box">
+<div class="icon-box">
+<i class="fa-solid fa-user-gear"></i>
+</div>
+<h4>Service Any Vehicle</h4>
+<p>
+Enim venia quis nostrud excrit  
+ulamco laboris nsut aliquip com  
+conseq reprehenderit.
+</p>
+<a href="#">READ MORE <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<style>
+.about-img{
+    position:relative;
+}
+
+
+.exp-box{
+    background:#ff6b00;
+    color:#fff;
+    padding:40px;
+    text-align:center;
+}
+
+.check-list li{
+    list-style:none;
+    margin-bottom:10px;
+}
+.check-list i{
+    color:#0d6efd;
+    margin-right:10px;
+}
+.line{
+    width:60px;
+    height:3px;
+    background:#ff6b00;
+    margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<section class="py-5">
+<div class="container">
+<div class="row align-items-center">
+
+<!-- LEFT -->
+<div class="col-md-6">
+
+<div class="about-img mb-4">
+<img src="images/img.jpg" class="img-fluid">
+
+<div class="play-btn">
+<i class="fa fa-play"></i>
+</div>
+</div>
+
+<div class="row">
+<div class="col-6">
+<div class="exp-box">
+<h1>27</h1>
+<p>Years of Experience<br>Industry Business</p>
+</div>
+</div>
+
+<div class="col-6">
+<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" class="img-fluid h-100">
+</div>
+</div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="col-md-6">
+
+<small class="text-muted">About Cardan Repair Services</small>
+
+<h2 class="fw-bold mt-2">
+We’re Committed To AutoRepair <br>
+Meets The Quality Standards
+</h2>
+
+<div class="line"></div>
+
+<p>
+Kiusmod tempor incididunt ut labore sed dolore magnas
+aliquay enim ad minim veniam quis nostrud exercitation
+ullamco laboris nisiut aliquip ex sed ipsum ea reprehend
+deritin voluptate.
+</p>
+
+<ul class="check-list p-0">
+<li><i class="fa fa-check-circle"></i> Top rated excellent reviews from customers</li>
+<li><i class="fa fa-check-circle"></i> We provide new offers & promotions</li>
+<li><i class="fa fa-check-circle"></i> Expert technicians always at service</li>
+<li><i class="fa fa-check-circle"></i> Get our lifetime guarantee works</li>
+<li><i class="fa fa-check-circle"></i> Offering 1500+ service locations USA</li>
+</ul>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<style>
+/* SECTION */
+.service-section{
+background:#0b3558;
+min-height:100vh;
+display:flex;
+align-items:center;
+}
+
+/* LEFT CONTENT */
+.content-box{
+background:#0b3558;
+}
+
+.feature-box{
+display:flex;
+gap:15px;
+margin-top:25px;
+}
+
+.feature-box img{
+width:45px;
+}
+
+.feature-box h5{
+margin:0;
+}
+
+.feature-box p{
+margin:0;
+font-size:14px;
+color:#ddd;
+}
+
+/* RIGHT VIDEO */
+.video-box{
+position:relative;
+padding:0;
+}
+
+.video-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-top-left-radius:200px;
+}
+
+.video-btn{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#ff6b00;
+width:80px;
+height:80px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:30px;
+text-decoration:none;
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.video-btn:hover{
+background:#ff4500;
+}
+
+.video-box{
+position:relative;
+}
+
+.video-btn{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:80px;
+height:80px;
+background:#ff6600;
+color:#fff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+text-decoration:none;
+}
+
+</style>
+</head>
+<body>
+
+<section class="service-section">
+<div class="container-fluid">
+<div class="row align-items-center">
+
+<!-- LEFT -->
+<div class="col-lg-6 text-white p-5 content-box">
+
+<h6 class="text-uppercase">Why Choose Cardan Repair Services</h6>
+
+<h1 class="fw-bold mt-3">
+Master Technicians With <br>
+Extensive Knowledge
+</h1>
+
+<p class="mt-3">
+Tempor incididunt labor sed dolore umt magna sed aliqua
+enim ad dolor minim veniam quis nostrud exercitation
+ullamco laboris ex sed ipsum ea reprehen deritin voluptate.
+</p>
+
+<div class="feature-box">
+<img src="https://cdn-icons-png.flaticon.com/512/1040/1040230.png">
+<div>
+<h5>Reliable & Fast Service</h5>
+<p>Magna sed aliqua umt derit enimd mini venia</p>
+</div>
+</div>
+
+<div class="feature-box">
+<img src="https://cdn-icons-png.flaticon.com/512/741/741407.png">
+<div>
+<h5>Right-Way Repairing</h5>
+<p>Derit magna aliqua umts enimd mini dolor sed</p>
+</div>
+</div>
+
+<div class="feature-box">
+<img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png">
+<div>
+<h5>Leading Auto Specialists</h5>
+<p>Magna aliqua sed umt enimd dolor min venia</p>
+</div>
+</div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="col-lg-6 video-box">
+
+<img id="videoThumb"
+src="https://images.pexels.com/photos/3807310/pexels-photo-3807310.jpeg"
+class="img-fluid">
+
+<a href="#" class="video-btn" onclick="playVideo()">
+▶
+</a>
+
+<div id="videoFrame" style="display:none;">
+<iframe width="100%" height="350"
+src="https://www.youtube.com/embed/N25l_BHk_HY"
+frameborder="0"
+allow="autoplay; encrypted-media"
+allowfullscreen>
+</iframe>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</section>
+<script>
+   
+function playVideo(){
+    const iframe = document.getElementById("videoFrame").querySelector("iframe");
+    iframe.src += "?autoplay=1";
+    document.getElementById("videoThumb").style.display = "none";
+    document.querySelector(".video-btn").style.display = "none";
+    document.getElementById("videoFrame").style.display = "block";
+}
+
+
+
+</script>
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:#fff;
+}
+
+
+.partner-section{
+    padding:80px 0;
+    text-align:center;
+}
+
+
+.big-text{
+    font-size:120px;
+    font-weight:900;
+    color:#f1f1f1;
+    letter-spacing:15px;
+    position:absolute;
+    width:100%;
+    top:-40px;
+    left:0;
+    z-index:-1;
+}
+
+.partner-section h6{
+    letter-spacing:4px;
+    font-weight:600;
+    margin-bottom:60px;
+}
+
+.logo-box{
+    filter: grayscale(100%);
+    transition:0.4s;
+}
+
+.logo-box:hover{
+    filter: grayscale(0%);
+    transform:scale(1.05);
+}
+
+.logo-box img{
+    width:150px;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="partner-section position-relative">
+
+    <div class="big-text">CARDAN</div>
+
+    <h6>TRUSTED BY OUR MILLIONS OF SATISFIED PARTNERS</h6>
+
+    <div class="container">
+        <div class="row justify-content-center g-4">
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/best_ouality.png" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/legendray_club.png" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/pit_stop.jpg" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/legendray_club.png" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/runnn.png" class="img-fluid">
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+
+
+<style>
+
+.footer{
+background:#001f33;
+padding:70px 0 20px;
+color:#ccc;
+font-family:Arial;
+}
+
+.footer h5{
+color:#fff;
+font-weight:700;
+margin-bottom:20px;
+position:relative;
+}
+
+.footer h5::after{
+content:'';
+width:30px;
+height:2px;
+background:#ff6b00;
+position:absolute;
+left:0;
+bottom:-8px;
+}
+
+.footer p{
+font-size:14px;
+line-height:26px;
+}
+
+.footer ul{
+list-style:none;
+padding:0;
+}
+
+.footer ul li{
+padding:7px 0;
+}
+
+.footer ul li::before{
+content:"•";
+color:#ff6b00;
+padding-right:10px;
+}
+
+.footer a{
+text-decoration:none;
+color:#ccc;
+}
+
+.footer a:hover{
+color:#ff6b00;
+}
+
+.call-box{
+margin-top:20px;
+display:flex;
+align-items:center;
+}
+
+.call-box i{
+font-size:40px;
+color:#fff;
+margin-right:15px;
+}
+
+.call-box span{
+color:#fff;
+font-size:22px;
+font-weight:700;
+}
+
+.social a{
+display:inline-block;
+background:#0a3a5f;
+width:35px;
+height:35px;
+line-height:35px;
+text-align:center;
+margin-right:8px;
+color:#fff;
+}
+
+.contact-box{
+display:flex;
+margin-bottom:20px;
+}
+
+.contact-box i{
+font-size:30px;
+margin-right:15px;
+color:#fff;
+}
+
+.bottom{
+border-top:1px solid #0a3a5f;
+margin-top:40px;
+padding-top:15px;
+text-align:center;
+font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<footer class="footer">
+<div class="container">
+<div class="row">
+
+<!-- LOGO -->
+<div class="col-md-3">
+<h5>CARDAN</h5>
+<p>
+Emod tempor incididunt sed labore dnim ad minim ips veniam quis nosts exercitation ullamco.
+</p>
+
+<div class="call-box">
+<i>📞</i>
+<div>
+<p class="mb-0">Talk With Our Experts</p>
+<span>(810) 920-4660</span>
+</div>
+</div>
+
+<div class="social mt-3">
+<a href="#">f</a>
+<a href="#">t</a>
+<a href="#">g+</a>
+<a href="#">in</a>
+<a href="#">v</a>
+</div>
+</div>
+
+<!-- SERVICES -->
+<div class="col-md-3">
+<h5>CARDAN SERVICES</h5>
+<ul>
+<li>Car Oil Change</li>
+<li>Purchase Inspection</li>
+<li>Auto Diagnostics</li>
+<li>Battery Problems</li>
+<li>Clutch & Brakes</li>
+<li>Engine Repair</li>
+<li>Filters & Exhaust</li>
+</ul>
+</div>
+
+<!-- ABOUT -->
+<div class="col-md-3">
+<h5>ABOUT COMPANY</h5>
+<ul>
+<li>About Cardan</li>
+<li>Fleet Maintenance</li>
+<li>Get a Career</li>
+<li>Service Areas</li>
+<li>Free Estimates</li>
+<li>Schedule Inspection</li>
+<li>Our Partners</li>
+</ul>
+</div>
+
+<!-- CONTACT -->
+<div class="col-md-3">
+<h5>GET IN TOUCH</h5>
+
+<div class="contact-box">
+<i>📞</i>
+<div>
+<p>For Repair Support</p>
+<b>+1(810) 799 4660 / 5660</b>
+</div>
+</div>
+
+<div class="contact-box">
+<i>⏰</i>
+<div>
+<p>The Working Hours</p>
+<b>Mon - Sat 9am to 7pm</b>
+</div>
+</div>
+
+<div class="contact-box">
+<i>✉</i>
+<div>
+<p>Send Us Email</p>
+<b>sellingcar@my-domain.com</b>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="bottom">
+(c)2020 <b>CARDAN</b> - Auto Repair Services. All rights reserved.  
+<a href="#">Terms & Conditions</a>
+</div>
+
+</div>
+</footer>
+
+
+</body>
+</html>

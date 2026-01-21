@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+        .sidebar {
+            min-width: 220px;
+            max-width: 220px;
+            min-height: 100vh;
+            background: #343a40;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: all 0.3s;
+        }
+        .sidebar .nav-link {
+            color: #adb5bd;
+            font-size: 1.1rem;
+        }
+        .sidebar .nav-link.active, .sidebar .nav-link:hover {
+            background: #495057;
+            color: #fff;
+        }
+        .sidebar .nav-link i {
+            margin-right: 10px;
+        }
+        .sidebar-header {
+            font-size: 1.5rem;
+            padding: 1.5rem 1rem;
+            background: #212529;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 2rem;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                left: -220px;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .content {
+                margin-left: 0;
+            }
+            #sidebarToggle {
+                display: inline-block;
+            }
+        }
+        #sidebarToggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1050;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn btn-dark" id="sidebarToggle"><i class="bi bi-list"></i></button>
+    <nav class="sidebar" id="sidebarMenu">
+        <div class="sidebar-header">
+            <i class="bi bi-speedometer2"></i> Admin
+        </div>
+        <ul class="nav flex-column mt-3">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="bi bi-house-door"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/profile"><i class="bi bi-person-circle"></i>Profile</a>
+            </li>
+            <li class="nav-item">
+    <a href="/admin/dashboard" class="nav-link">
+        <i class="bi bi-speedometer2"></i> Dashboard
+    </a>
+</li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/cars"><i class="bi bi-car-front-fill"></i> Cars</a>
+            </li>
+             <li class="nav-item">
+                 <a class="nav-link" href="/admin/service_orders"><i class="bi bi-receipt"></i>Orders</a>
+            </li> 
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/customers"><i class="bi bi-people-fill"></i> Customers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/blog"><i class="bi bi-pencil-square"></i></i> Blog</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="/admin/contact"><i class="bi bi-chat-dots"></i> Contact</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="/admin/testimonials"><i class="bi bi-chat-dots"></i>Testimonials</a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/payment"><i class="bi bi-credit-card-2-front"></i> Payment</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+            </li>
+        </ul>
+    </nav>
+   
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blog Management</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+.blog-img{
+    width:80px;
+    height:60px;
+    object-fit:cover;
+    border-radius:5px;
+}
+.content {
+    margin-left: 220px;
+    padding: 2rem;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="content">
+
+<div class="container mt-4">
+
+<!-- ================= ADD BLOG FORM ================= -->
+<div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5>Add New Blog</h5>
+    </div>
+
+    <div class="card-body">
+        <form method="POST" action="/admin/save_blog" enctype="multipart/form-data">
+
+            <label>Blog Title</label>
+            <input class="form-control mb-2" name="blog_title" required>
+
+            <label>Slug</label>
+            <input class="form-control mb-2" name="blog_slug">
+
+            <label>Short Description</label>
+            <textarea class="form-control mb-2" name="blog_short_desc"></textarea>
+
+            <label>Full Content</label>
+            <textarea class="form-control mb-2" name="blog_content"></textarea>
+
+            <label>Blog Image</label>
+            <input type="file" class="form-control mb-2" name="blog_image" required>
+
+            <label>Author Name</label>
+            <input class="form-control mb-2" name="blog_author">
+
+            <label>Category</label>
+            <input class="form-control mb-2" name="blog_category">
+
+            <label>Tags</label>
+            <input class="form-control mb-3" name="blog_tags">
+
+            <button class="btn btn-success w-100">Save Blog</button>
+        </form>
+    </div>
+</div>
+
+<!-- ================= BLOG LIST TABLE ================= -->
+<div class="card shadow">
+    <div class="card-header bg-dark text-white">
+        <h5>Blog List</h5>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered text-center">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% blogs.forEach(b => { %>
+                <tr>
+                    <td><%= b.blog_id %></td>
+                    <td>
+                        <b><%= b.title %></b><br>
+                        <small><%= b.blog_short_desc %></small>
+                    </td>
+                    <td>
+                        <img src="/images/<%= b.img %>" class="blog-img">
+                    </td>
+                    <td><%= b.category %></td>
+                    <td>
+                       <a href="/admin/edit_blog/<%= b.blog_id %>" class="btn btn-primary">Edit</a>
+                       <a href="/admin/delete_blog/<%= b.blog_id %>" class="btn btn-danger">Delete</a>
+
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+</body>
+</html>

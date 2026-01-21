@@ -1,0 +1,47 @@
+<%- include('navbar') %>
+
+<div class="container-fluid mt-5">
+    <div class="row">
+
+        <!-- LEFT SPACE (for sidebar) -->
+        <div class="col-md-3"></div>
+
+        <!-- MAIN CONTENT -->
+        <div class="col-md-9">
+
+            <h3>Contact Requests</h3>
+
+            <% if (requests && requests.length > 0) { %>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% requests.forEach((r, i) => { %>
+                                <tr>
+                                    <td><%= i + 1 %></td>
+                                    <td><%= r.name %></td>
+                                    <td><%= r.email %></td>
+                                    <td><%= r.mobile %></td>
+                                    <td><%= r.message %></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } else { %>
+                <div class="alert alert-info">No messages yet.</div>
+            <% } %>
+
+        </div>
+    </div>
+</div>
+
+<%- include('footer') %>

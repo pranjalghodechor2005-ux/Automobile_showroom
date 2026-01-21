@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Car Repair Website</title>
+
+<!-- Bootstrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+.top-bar{
+    background:#f5f5f5;
+    font-size:14px;
+    margin-top: 1%;
+}
+body{
+padding-top:80px;
+}
+
+.navbar-brand img{
+width:150px;
+}
+
+.hero{
+    background:url('https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7') center/cover;
+    min-height:90vh;
+    position:relative;
+}
+.hero::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.6);
+}
+.hero-content{
+    position:relative;
+    color:#fff;
+    padding-top:150px;
+}
+.btn-orange{
+    background:#ff6b00;
+    color:#fff;
+}
+.btn-orange:hover{
+    background:#e05f00;
+}
+.contact-box{
+    background:#003b5c;
+    color:#fff;
+    padding:15px 20px;
+}
+.site-logo{
+width:140px;   
+height:auto;
+object-fit:contain;
+cursor:pointer;
+transition:0.3s;
+}
+
+.site-logo:hover{
+transform:scale(1.05);
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar py-2">
+<div class="container d-flex justify-content-between align-items-center">
+
+    <div>
+        <i class="fa fa-map-marker-alt text-warning"></i>
+        1138 Havanna St, San Francisco CA 94108
+    </div>
+
+    <div>
+        <i class="fa fa-clock text-warning"></i>
+        Working Hours: Mon to Sat 9am - 7pm | Sunday Closed
+    </div>
+
+    <!-- SOCIAL ICONS -->
+    <div>
+        <a href="#" class="text-dark me-2"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-dark me-2"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-dark me-2"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="text-dark me-2"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="text-dark"><i class="fab fa-pinterest-p"></i></a>
+    </div>
+
+</div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+<div class="container">
+    <img src="data:image/png;base64,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" class="site-logo" alt="Logo">
+
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">ABOUT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="/services">SERVICES</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="page.html">PAGE</a></li> -->
+            <li class="nav-item"><a class="nav-link" href="/news">NEWS</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">CONTACT</a></li>
+        </ul>
+
+        <div class="contact-box ms-3">
+            <i class="fa fa-comments"></i>
+            Talk With Experts <br>
+            <b class="text-warning">(810) 920-0664</b>
+        </div>
+    </div>
+</div>
+</nav>
+
+<!-- HERO SLIDER -->
+<section class="hero">
+
+<div id="heroSlider" class="carousel slide" data-bs-ride="carousel">
+
+<!-- Indicators -->
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="0" class="active"></button>
+  <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="1"></button>
+  <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="2"></button>
+</div>
+
+<!-- Slides -->
+<div class="carousel-inner">
+
+<!-- Slide 1 -->
+<div class="carousel-item active" style="background:url('https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7') center/cover; min-height:90vh;">
+<div class="overlay"></div>
+
+<div class="container hero-content">
+<div class="row">
+<div class="col-md-6">
+    <h1 class="display-4 fw-bold">
+        We Make Your Vehicle <br> In Good Shape
+    </h1>
+
+    <p class="mt-3">
+        Minim veniam quis nostrud exercitation ullamco laboris nisi
+        ex sed ipsum ea reprehenderit voluptate.
+    </p>
+
+    <div class="mt-4">
+        <a href="#" class="btn btn-danger">LEARN MORE</a>
+        <a href="#" class="btn btn-light">FREE ESTIMATE</a>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Slide 2 -->
+<div class="carousel-item" style="background:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70') center/cover; min-height:90vh;">
+<div class="overlay"></div>
+
+<div class="container hero-content">
+<div class="row">
+<div class="col-md-6">
+    <h1 class="display-4 fw-bold">
+        Best Car Repair <br> Services
+    </h1>
+
+    <p class="mt-3">
+        Professional mechanics with modern equipment.
+    </p>
+
+    <div class="mt-4">
+        <a href="#" class="btn btn-orange me-2">LEARN MORE</a>
+        <a href="#" class="btn btn-light">FREE ESTIMATE</a>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Slide 3 -->
+<div class="carousel-item" style="background:url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc') center/cover; min-height:90vh;">
+<div class="overlay"></div>
+
+<div class="container hero-content">
+<div class="row">
+<div class="col-md-6">
+    <h1 class="display-4 fw-bold">
+        Trusted Auto <br> Experts
+    </h1>
+
+    <p class="mt-3">
+        Quality service at affordable price.
+    </p>
+
+    <div class="mt-4">
+        <a href="#" class="btn btn-orange me-2">LEARN MORE</a>
+        <a href="#" class="btn btn-light">FREE ESTIMATE</a>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- Controls -->
+<button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+
+<button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+
+</div>
+</section>
+
+<style>
+    .hero{
+    position:relative;
+}
+
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+}
+
+.hero-content{
+    position:relative;
+    color:#fff;
+    padding-top:150px;
+}
+
+.btn-orange{
+    background:#ff6b00;
+    color:#fff;
+}
+
+</style>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+.feature-box{
+    padding:30px;
+}
+.icon-circle{
+    width:80px;
+    height:80px;
+    background:#ffe6d5;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:20px;
+}
+.icon-circle i{
+    font-size:35px;
+    color:#003b5c;
+}
+.read-more{
+    color:#003b5c;
+    font-weight:600;
+    text-decoration:none;
+}
+.read-more i{
+    color:#ff6b00;
+}
+</style>
+</head>
+
+<body>
+
+<section class="py-5">
+<div class="container">
+<div class="row text-start">
+
+<!-- BOX 1 -->
+<div class="col-md-4">
+<div class="feature-box">
+
+<div class="icon-circle">
+<i class="fa-solid fa-screwdriver-wrench"></i>
+</div>
+
+<h4>Modern Equipments</h4>
+<p>
+Enim venia quis nostrud exrcit
+ulamco laboris nsut aliquip com
+conseq reprehenderit.
+</p>
+
+<a href="#" class="read-more">
+READ MORE <i class="fa fa-angle-right"></i>
+</a>
+
+</div>
+</div>
+
+<!-- BOX 2 -->
+<div class="col-md-4">
+<div class="feature-box">
+
+<div class="icon-circle">
+<i class="fa-solid fa-screwdriver-wrench"></i>
+</div>
+
+<h4>Trusted Workshop</h4>
+<p>
+Enim venia quis nostrud exrcit
+ulamco laboris nsut aliquip com
+conseq reprehenderit.
+</p>
+
+<a href="#" class="read-more">
+READ MORE <i class="fa fa-angle-right"></i>
+</a>
+
+</div>
+</div>
+
+<!-- BOX 3 -->
+<div class="col-md-4">
+<div class="feature-box">
+
+<div class="icon-circle">
+<i class="fa-solid fa-user-gear"></i>
+</div>
+
+<h4>Service Any Vehicle</h4>
+<p>
+Enim venia quis nostrud exrcit
+ulamco laboris nsut aliquip com
+conseq reprehenderit.
+</p>
+
+<a href="#" class="read-more">
+READ MORE <i class="fa fa-angle-right"></i>
+</a>
+
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<style>
+.about-img{
+    position:relative;
+}
+
+
+.exp-box{
+    background:#ff6b00;
+    color:#fff;
+    padding:40px;
+    text-align:center;
+}
+
+.check-list li{
+    list-style:none;
+    margin-bottom:10px;
+}
+.check-list i{
+    color:#0d6efd;
+    margin-right:10px;
+}
+.line{
+    width:60px;
+    height:3px;
+    background:#ff6b00;
+    margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<section class="py-5">
+<div class="container">
+<div class="row align-items-center">
+
+<!-- LEFT -->
+<div class="col-md-6">
+
+<div class="about-img mb-4">
+<img src="images/img.jpg" class="img-fluid">
+
+<div class="play-btn">
+<i class="fa fa-play"></i>
+</div>
+</div>
+
+<div class="row">
+<div class="col-6">
+<div class="exp-box">
+<h1>27</h1>
+<p>Years of Experience<br>Industry Business</p>
+</div>
+</div>
+
+<div class="col-6">
+<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" class="img-fluid h-100">
+</div>
+</div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="col-md-6">
+
+<small class="text-muted">About Cardan Repair Services</small>
+
+<h2 class="fw-bold mt-2">
+We’re Committed To AutoRepair <br>
+Meets The Quality Standards
+</h2>
+
+<div class="line"></div>
+
+<p>
+Kiusmod tempor incididunt ut labore sed dolore magnas
+aliquay enim ad minim veniam quis nostrud exercitation
+ullamco laboris nisiut aliquip ex sed ipsum ea reprehend
+deritin voluptate.
+</p>
+
+<ul class="check-list p-0">
+<li><i class="fa fa-check-circle"></i> Top rated excellent reviews from customers</li>
+<li><i class="fa fa-check-circle"></i> We provide new offers & promotions</li>
+<li><i class="fa fa-check-circle"></i> Expert technicians always at service</li>
+<li><i class="fa fa-check-circle"></i> Get our lifetime guarantee works</li>
+<li><i class="fa fa-check-circle"></i> Offering 1500+ service locations USA</li>
+</ul>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:#fff;
+}
+
+
+.partner-section{
+    padding:80px 0;
+    text-align:center;
+}
+
+
+.big-text{
+    font-size:120px;
+    font-weight:900;
+    color:#f1f1f1;
+    letter-spacing:15px;
+    position:absolute;
+    width:100%;
+    top:-40px;
+    left:0;
+    z-index:-1;
+}
+
+.partner-section h6{
+    letter-spacing:4px;
+    font-weight:600;
+    margin-bottom:60px;
+}
+
+.logo-box{
+    filter: grayscale(100%);
+    transition:0.4s;
+}
+
+.logo-box:hover{
+    filter: grayscale(0%);
+    transform:scale(1.05);
+}
+
+.logo-box img{
+    width:150px;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="partner-section position-relative">
+
+    <div class="big-text">CARDAN</div>
+
+    <h6>TRUSTED BY OUR MILLIONS OF SATISFIED PARTNERS</h6>
+
+    <div class="container">
+        <div class="row justify-content-center g-4">
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/best_ouality.png" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/legendray_club.png" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/pit_stop.jpg" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/legendray_club.png" class="img-fluid">
+            </div>
+
+            <div class="col-md-2 col-6 logo-box">
+                <img src="images/runnn.png" class="img-fluid">
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<style>
+
+body{
+    background:#f5f8fa;
+}
+
+.service-section{
+    padding:80px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+.section-title h2{
+    font-weight:700;
+}
+.section-title small{
+    color:#999;
+}
+
+.service-tabs{
+    background:#fff;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+.service-tabs .nav-link{
+    color:#000;
+    padding:20px;
+    border-radius:0;
+}
+.service-tabs .nav-link.active{
+    border-bottom:3px solid #ff6b00;
+    background:#fff;
+}
+
+.service-box{
+    background:#fff;
+    margin-top:40px;
+    padding:40px;
+    box-shadow:0 5px 25px rgba(0,0,0,0.1);
+}
+
+.price{
+    color:#ff6b00;
+    font-weight:700;
+}
+
+.service-list li{
+    margin-bottom:10px;
+}
+
+.btn-orange{
+    background:#ff6b00;
+    color:#fff;
+    padding:12px 30px;
+}
+.btn-orange:hover{
+    background:#e85f00;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="service-section">
+<div class="container">
+
+<!-- Title -->
+<div class="section-title">
+    <small>We Promise To Give Best Maintenance</small>
+    <h2>Vehicle Services We Perform</h2>
+</div>
+
+<!-- Tabs -->
+<ul class="nav nav-tabs justify-content-center service-tabs">
+  <li class="nav-item">
+    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1">
+      Clutch & Transmission<br><small>Includes All Services for This</small>
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2">
+      Vehicle Diagnostics<br><small>Includes All Services for This</small>
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab3">
+      Heating & AC<br><small>Includes All Services for This</small>
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab4">
+      Engine (Under the Hood)<br><small>Includes All Services for This</small>
+    </button>
+  </li>
+</ul>
+
+<!-- Content -->
+<div class="tab-content">
+
+<!-- TAB 1 -->
+<div class="tab-pane fade show active" id="tab1">
+<div class="service-box">
+<div class="row align-items-center">
+
+<div class="col-md-6">
+<img src="images/man.jpg" class="img-fluid rounded">
+</div>
+
+<div class="col-md-6">
+
+<h3>Vehicle Diagnostics</h3>
+<p>
+Auto diagnostic services starts from 
+<span class="price">$79.99</span>
+</p>
+
+<p>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+Velit nemo molestiae deleniti.
+</p>
+
+<div class="row">
+<div class="col-md-6">
+<ul class="service-list list-unstyled">
+<li>✔ 75 Point Safety Inspection</li>
+<li>✔ ABS Light Inspection</li>
+<li>✔ AC Not Working Check</li>
+<li>✔ Windshield Jets Adjust</li>
+<li>✔ Air Filter Check</li>
+<li>✔ Air Flow Check</li>
+</ul>
+</div>
+
+<div class="col-md-6">
+<ul class="service-list list-unstyled">
+<li>✔ 75 Point Safety Inspection</li>
+<li>✔ ABS Light Inspection</li>
+<li>✔ AC Not Working Check</li>
+<li>✔ Windshield Jets Adjust</li>
+<li>✔ Air Filter Check</li>
+<li>✔ Air Flow Check</li>
+</ul>
+</div>
+</div>
+
+<a href="/services" class="btn btn-orange mt-3">VIEW ALL SERVICES</a>
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- OTHER TABS DUMMY -->
+<div class="tab-pane fade" id="tab2">Same design content</div>
+<div class="tab-pane fade" id="tab3">Same design content</div>
+<div class="tab-pane fade" id="tab4">Same design content</div>
+
+</div>
+</div>
+</section>
+
+
+
+<style>
+
+.top-bar{
+    padding:18px 0;   
+    background:#fff;
+}
+
+/* Left */
+.title-box{
+    display:flex;
+    align-items:center;
+    gap:12px;  
+}
+
+.title-box i{
+    font-size:38px;
+    color:#ff6b00;
+    margin-left: 50%;
+
+}
+
+.title-text{
+    font-size:26px;
+    font-weight:700;
+    line-height:1.3;
+    
+}
+
+/* Right info */
+.info-box{
+    display:flex;
+    align-items:center;
+    gap:8px; 
+}
+
+.info-box i{
+    font-size:20px;
+    background:#ffe6d6;
+    padding:10px;
+    border-radius:50%;
+    color:#ff6b00;
+    /* margin-right: 3%; */
+}
+
+.info-text small{
+    display:block;
+    color:#777;
+    font-size:13px;
+}
+
+.info-text span{
+    font-weight:600;
+    font-size:15px;
+}
+
+.divider{
+    border-left:1px solid #ddd;
+    height:40px;
+}
+
+.right-wrap{
+    gap:22px;   
+}
+
+</style>
+</head>
+
+<body>
+
+
+
+
+
+<style>
+
+.section{
+    padding:80px 0;
+    text-align:center;
+}
+
+.section small{
+    color:#888;
+}
+
+.section h2{
+    font-weight:700;
+    margin:10px 0 15px;
+}
+
+.line{
+    width:40px;
+    height:3px;
+    background:#ff6b00;
+    margin:0 auto 60px;
+}
+
+.car-card{
+    background:#f3f7f9;
+    padding:40px 30px;
+    transition:.4s;
+    position:relative;
+}
+
+.car-card img{
+    width:120px;
+    margin-bottom:20px;
+}
+
+.car-card h5{
+    font-weight:600;
+}
+
+.car-card .btn{
+    opacity:0;
+    margin-top:20px;
+    border:2px solid #fff;
+    color:#fff;
+}
+
+.car-card:hover{
+    background:#083b5c;
+    color:#fff;
+}
+
+.car-card:hover .btn{
+    opacity:1;
+}
+
+.car-card.active{
+    background:#083b5c;
+    color:#fff;
+}
+
+.car-card.active .btn{
+    opacity:1;
+}
+
+.btn-outline{
+    background:transparent;
+}
+
+.arrow{
+    width:45px;
+    height:45px;
+    border:1px solid #ddd;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="section">
+<div class="container">
+
+<small>Fixing Any Kind Of Vehicles At Cardan</small>
+<h2>Types Of Cars We Repair</h2>
+<div class="line"></div>
+
+<div class="row justify-content-center g-4">
+
+<!-- CARD 1 -->
+<div class="col-md-4">
+<div class="car-card">
+    <img src="images/suv's.png">
+    <h5>Luxury Cars</h5>
+    <p>Magna aliqua ut enim ad minim veniam quis ullamco.</p>
+    <a href="#" class="btn btn-outline">LEARN MORE →</a>
+</div>
+</div>
+
+<!-- CARD 2 -->
+<div class="col-md-4">
+<div class="car-card">
+    <img src="images/sports_cars.png">
+    <h5>SUV’s & Pickups</h5>
+    <p>Magna aliqua ut enim ad minim veniam quis ullamco.</p>
+    <a href="#" class="btn btn-outline">LEARN MORE →</a>
+</div>
+</div>
+
+<!-- CARD 2 -->
+<div class="col-md-4">
+<div class="car-card">
+    <img src="images/luxury_cars.png">
+    <h5>Sports Cars</h5>
+    <p>Magna aliqua ut enim ad minim veniam quis ullamco.</p>
+    <a href="#" class="btn btn-outline">LEARN MORE →</a>
+</div>
+</div>
+
+</div>
+
+<!-- arrows -->
+<div class="mt-5">
+    <span class="arrow">←</span>
+    <span class="arrow">→</span>
+</div>
+
+</div>
+</section>
+
+
+
+<style>
+
+.section{
+    padding:80px 0;
+    text-align:center;
+    background:#f4f7f9;
+    margin-top: -5%;
+}
+
+.section small{
+    color:#999;
+}
+
+.section h2{
+    font-weight:700;
+}
+
+.line{
+    width:40px;
+    height:3px;
+    background:#ff6b00;
+    margin:10px auto 50px;
+}
+
+.project{
+    position:relative;
+    overflow:hidden;
+}
+
+.project img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(255,107,0,.9);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    opacity:0;
+    transition:.4s;
+}
+
+.overlay h4{
+    font-weight:600;
+}
+
+.overlay span{
+    font-size:14px;
+}
+
+.project:hover .overlay{
+    opacity:1;
+}
+
+.project.active .overlay{
+    opacity:1;
+}
+
+.plus{
+    font-size:40px;
+    font-weight:300;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="section">
+<div class="container">
+
+<small>Cardan Is Leader In Auto Repair</small>
+<h2>Our Recent Projects</h2>
+<div class="line"></div>
+
+<div class="row g-3">
+
+<!-- 1 -->
+<div class="col-md-3">
+<div class="project">
+<img src="images/1.jpg">
+<div class="overlay">
+<span class="plus">+</span>
+<h4>Tyre Change</h4>
+<span>Auto Repair</span>
+</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="col-md-3">
+<div class="project">
+<img src="images/2.jpg">
+<div class="overlay">
+<span class="plus">+</span>
+<h4>Tyre Change</h4>
+<span>Auto Repair</span>
+</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="col-md-3">
+<div class="project">
+<img src="images/3.jpg">
+<div class="overlay">
+<span class="plus">+</span>
+<h4>Tyre Change</h4>
+<span>Auto Repair</span>
+</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="col-md-3">
+<div class="project">
+<img src="images/4.jpg">
+<div class="overlay">
+<span class="plus">+</span>
+<h4>Tyre Change</h4>
+<span>Auto Repair</span>
+</div>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="col-md-3">
+<div class="project">
+<img src="images/5.jpg">
+<div class="overlay">
+<span class="plus">+</span>
+<h4>Tyre Change</h4>
+<span>Auto Repair</span>
+</div>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="col-md-3">
+<div class="project">
+<img src="images/6.jpg">
+<div class="overlay">
+<span class="plus">+</span>
+<h4>Tyre Change</h4>
+<span>Auto Repair</span>
+</div>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="col-md-3">
+<div class="project">
+<img src="images/7.jpg">
+<div class="overlay">
+<span class="plus">+</span>
+<h4>Tyre Change</h4>
+<span>Auto Repair</span>
+</div>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="col-md-3">
+<div class="project">
+<img src="images/8.jpg">
+<div class="overlay">
+<span class="plus">+</span>
+<h4>Tyre Change</h4>
+<span>Auto Repair</span>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+
+<style>
+
+.testimonial-section{
+    padding:100px 0;
+    background:#fff;
+    text-align:center;
+}
+
+.testimonial-section small{
+    color:#999;
+}
+
+.testimonial-section h2{
+    font-weight:700;
+}
+
+.line{
+    width:40px;
+    height:3px;
+    background:#ff6b00;
+    margin:12px auto 60px;
+}
+
+/* card */
+.test-card{
+    background:#fff;
+    border:1px solid #eee;
+    padding:45px 40px;
+    position:relative;
+}
+
+.quote{
+    position:absolute;
+    top:-30px;
+    right:30px;
+    font-size:120px;
+    color:#f2f5f7;
+    font-family:serif;
+}
+
+
+.title{
+    color:#0b3c5d;
+    font-weight:600;
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.desc{
+    color:#777;
+    line-height:28px;
+    margin-bottom:30px;
+}
+
+
+.user{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.user img{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+}
+
+.name{
+    font-weight:600;
+}
+
+.role{
+    font-size:14px;
+    color:#888;
+}
+
+.star{
+    color:#ffc107;
+    font-size:14px;
+}
+
+.dots{
+    margin-top:40px;
+}
+
+.dots span{
+    width:10px;
+    height:10px;
+    background:#ddd;
+    border-radius:50%;
+    display:inline-block;
+    margin:0 4px;
+}
+
+.dots .active{
+    background:#ff6b00;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="testimonial-section">
+<div class="container">
+
+<small>We Promise You To Give Best Repair Services</small>
+<h2>Nicest Words From Customers</h2>
+<div class="line"></div>
+
+<div class="row justify-content-center">
+
+<!-- 1 -->
+<div class="col-md-5">
+<div class="test-card">
+<span class="quote">“</span>
+
+<div class="title">
+Satisfied With The Workshop Facilities At Cardan Auto Repair Workshop
+</div>
+
+<div class="desc">
+At dolore magna aliqua umt enim ad mini veniam quis
+ulamco aliquip commodo da consequat duis aute irue
+derit voluptate cillum dolore afugiat.
+</div>
+
+<div class="user">
+<img src="images/donald.png">
+<div>
+<div class="name">Donald H. James</div>
+<div class="role">Car Owner Repair</div>
+</div>
+
+<div class="ms-auto">
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="col-md-5">
+<div class="test-card">
+<span class="quote">“</span>
+
+<div class="title">
+Extremely Fast Service, Prompt Arrival, BEST! Incredible Job Done By Mechanic
+</div>
+
+<div class="desc">
+At dolore magna aliqua umt enim ad mini veniam quis
+ulamco aliquip commodo da consequat duis aute irue
+derit voluptate cillum dolore afugiat.
+</div>
+
+<div class="user">
+<img src="images/donald.png">
+<div>
+<div class="name">Katherine A. Fogg</div>
+<div class="role">Car Owner Repair</div>
+</div>
+
+<div class="ms-auto">
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+
+<div class="dots">
+<span></span>
+<span></span>
+<span class="active"></span>
+<span></span>
+<span></span>
+</div>
+
+</div>
+</section>
+
+<style>
+
+.stats-section{
+    background:url('bg.jpg') center/cover no-repeat;
+    position:relative;
+    padding:90px 0;
+}
+
+.stats-section::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:#003a5d;
+    opacity:.9;
+}
+
+.stats-box{
+    position:relative;
+    text-align:center;
+    color:#fff;
+}
+
+.icon-circle{
+    width:90px;
+    height:90px;
+    border:2px dotted #fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 20px;
+}
+
+.icon-circle img{
+    width:45px;
+}
+
+.count{
+    font-size:42px;
+    font-weight:700;
+}
+
+.label{
+    letter-spacing:3px;
+    font-size:13px;
+    margin-top:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="stats-section">
+  <div class="container">
+    <div class="row text-center">
+
+      <!-- 1 -->
+      <div class="col-md-3">
+        <div class="stats-box">
+          <div class="icon-circle">
+            <img src="images/9.png">
+          </div>
+          <div class="count"><%= vehiclesRepaired %>+</div>
+          <div class="label">VEHICLES REPAIRED</div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="col-md-3">
+        <div class="stats-box">
+          <div class="icon-circle">
+            <img src="images/10.png">
+          </div>
+          <div class="count"><%= workshopNetwork %>+</div>
+          <div class="label">WORKSHOP NETWORK</div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="col-md-3">
+        <div class="stats-box">
+          <div class="icon-circle">
+            <img src="images/11.png">
+          </div>
+          <div class="count"><%= happyCustomers %>+</div>
+          <div class="label">HAPPY CUSTOMERS</div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="col-md-3">
+        <div class="stats-box">
+          <div class="icon-circle">
+            <img src="images/12.png">
+          </div>
+          <div class="count"><%= expertTechnicians %>+</div>
+          <div class="label">EXPERT TECHNICIANS</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+
+.news-section{
+    padding:80px 0;
+    background:#fff;
+}
+
+.sub-title{
+    color:#777;
+    text-align:center;
+    font-size:14px;
+}
+
+.main-title{
+    font-size:36px;
+    font-weight:700;
+    text-align:center;
+}
+
+.orange-line{
+    width:60px;
+    height:3px;
+    background:#ff6b00;
+    margin:15px auto 50px;
+}
+
+.news-card{
+    background:#f4f8fb;
+}
+
+.news-img{
+    position:relative;
+}
+
+.news-img img{
+    width:100%;
+}
+
+.tag{
+    position:absolute;
+    bottom:15px;
+    left:15px;
+    background:#ff6b00;
+    color:#fff;
+    font-size:13px;
+    padding:5px 15px;
+    font-weight:600;
+}
+
+.news-body{
+    padding:25px;
+}
+
+.meta{
+    font-size:14px;
+    color:#777;
+    margin-bottom:10px;
+}
+
+.meta a{
+    color:#333;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.news-title{
+    font-size:20px;
+    font-weight:700;
+}
+
+.news-desc{
+    color:#666;
+    font-size:15px;
+    line-height:26px;
+    margin:15px 0;
+}
+
+.read-more{
+    font-size:14px;
+    font-weight:700;
+    color:#004b78;
+    text-decoration:none;
+}
+
+.read-more i{
+    color:#ff6b00;
+}
+
+.top-btn{
+    border:2px solid #004b78;
+    padding:10px 25px;
+    font-weight:700;
+    background:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="news-section">
+<div class="container">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+<div>
+<div class="sub-title">Read What's Happening At Cardan</div>
+<div class="main-title">Latest News & Updates</div>
+<div class="orange-line"></div>
+</div>
+
+<button class="top-btn">
+READ MORE NEWS <i class="fa-solid fa-angle-right text-warning"></i>
+</button>
+</div>
+
+<div class="row g-4">
+
+<!-- CARD 1 -->
+<div class="col-md-4">
+<div class="news-card">
+
+<div class="news-img">
+<img src="images/man1.jpg">
+<span class="tag">AUTO REPAIR</span>
+</div>
+
+<div class="news-body">
+<div class="meta">
+January 31, 2021 &nbsp; | &nbsp; By <a href="#">Smith Henry</a>
+</div>
+
+<div class="news-title">
+Generator Components Which You Should Know
+</div>
+
+<div class="news-desc">
+Magna aliqua umt enimd mini venia quis ulamco aliquip commodo cons equat duis aute irue derit ...
+</div>
+
+<a class="read-more" href="#">
+READ MORE <i class="fa-solid fa-angle-right"></i>
+</a>
+
+</div>
+</div>
+</div>
+
+<!-- CARD 2 -->
+<div class="col-md-4">
+<div class="news-card">
+
+<div class="news-img">
+<img src="images/man2.jpg">
+<span class="tag">MAINTENANCE</span>
+</div>
+
+<div class="news-body">
+<div class="meta">
+January 31, 2021 &nbsp; | &nbsp; By <a href="#">Smith Henry</a>
+</div>
+
+<div class="news-title">
+We Do Auto Repair And Inspection Commitment
+</div>
+
+<div class="news-desc">
+Magna aliqua umt enimd mini venia quis ulamco aliquip commodo cons equat duis aute irue derit ...
+</div>
+
+<a class="read-more" href="#">
+READ MORE <i class="fa-solid fa-angle-right"></i>
+</a>
+
+</div>
+</div>
+</div>
+
+<!-- CARD 3 -->
+<div class="col-md-4">
+<div class="news-card">
+
+<div class="news-img">
+<img src="images/man3.jpg">
+<span class="tag">CAR ENGINE</span>
+</div>
+
+<div class="news-body">
+<div class="meta">
+January 31, 2021 &nbsp; | &nbsp; By <a href="#">Smith Henry</a>
+</div>
+
+<div class="news-title">
+Inadequate Engine Oil Will Cause Damage The Parts
+</div>
+
+<div class="news-desc">
+Magna aliqua umt enimd mini venia quis ulamco aliquip commodo cons equat duis aute irue derit ...
+</div>
+
+<a class="read-more" href="#">
+READ MORE <i class="fa-solid fa-angle-right"></i>
+</a>
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<style>
+
+.newsletter{
+    background:#003b5c;
+    padding:60px 0;
+    position:relative;
+}
+
+.news-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.mail-icon{
+    width:120px;
+}
+
+.mail-icon img{
+    width:100%;
+}
+
+
+.news-text h2{
+    color:#fff;
+    font-weight:700;
+}
+
+.news-text p{
+    color:#cfd8dc;
+    margin:0;
+}
+
+.news-form{
+    display:flex;
+}
+
+.news-form input{
+    width:300px;
+    padding:15px;
+    border:none;
+}
+
+.news-form button{
+    background:#ff6b00;
+    color:#fff;
+    border:none;
+    padding:0 30px;
+    font-weight:700;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="newsletter">
+<div class="container">
+
+<div class="news-wrap">
+
+
+<div class="mail-icon">
+<img src="images/file.jpg">
+</div>
+
+
+<div class="news-text">
+<h2>Newsletter Subscription</h2>
+<p>Get Latest Auto News & Updates Directly To Inbox</p>
+</div>
+
+
+<div class="news-form">
+<input type="email" placeholder="Write your email ...">
+<button>SUBSCRIBE &nbsp; ➤</button>
+</div>
+
+</div>
+</div>
+</section>
+
+
+
+<style>
+
+.footer{
+background:#001f33;
+padding:70px 0 20px;
+color:#ccc;
+font-family:Arial;
+}
+
+.footer h5{
+color:#fff;
+font-weight:700;
+margin-bottom:20px;
+position:relative;
+}
+
+.footer h5::after{
+content:'';
+width:30px;
+height:2px;
+background:#ff6b00;
+position:absolute;
+left:0;
+bottom:-8px;
+}
+
+.footer p{
+font-size:14px;
+line-height:26px;
+}
+
+.footer ul{
+list-style:none;
+padding:0;
+}
+
+.footer ul li{
+padding:7px 0;
+}
+
+.footer ul li::before{
+content:"•";
+color:#ff6b00;
+padding-right:10px;
+}
+
+.footer a{
+text-decoration:none;
+color:#ccc;
+}
+
+.footer a:hover{
+color:#ff6b00;
+}
+
+.call-box{
+margin-top:20px;
+display:flex;
+align-items:center;
+}
+
+.call-box i{
+font-size:40px;
+color:#fff;
+margin-right:15px;
+}
+
+.call-box span{
+color:#fff;
+font-size:22px;
+font-weight:700;
+}
+
+.social a{
+display:inline-block;
+background:#0a3a5f;
+width:35px;
+height:35px;
+line-height:35px;
+text-align:center;
+margin-right:8px;
+color:#fff;
+}
+
+.contact-box{
+display:flex;
+margin-bottom:20px;
+}
+
+.contact-box i{
+font-size:30px;
+margin-right:15px;
+color:#fff;
+}
+
+.bottom{
+border-top:1px solid #0a3a5f;
+margin-top:40px;
+padding-top:15px;
+text-align:center;
+font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<footer class="footer">
+<div class="container">
+<div class="row">
+
+<!-- LOGO -->
+<div class="col-md-3">
+<h5>CARDAN</h5>
+<p>
+Emod tempor incididunt sed labore dnim ad minim ips veniam quis nosts exercitation ullamco.
+</p>
+
+<div class="call-box">
+<i>📞</i>
+<div>
+<p class="mb-0">Talk With Our Experts</p>
+<span>(810) 920-4660</span>
+</div>
+</div>
+
+<div class="social mt-3">
+<a href="#">f</a>
+<a href="#">t</a>
+<a href="#">g+</a>
+<a href="#">in</a>
+<a href="#">v</a>
+</div>
+</div>
+
+<!-- SERVICES -->
+<div class="col-md-3">
+<h5>CARDAN SERVICES</h5>
+<ul>
+<li>Car Oil Change</li>
+<li>Purchase Inspection</li>
+<li>Auto Diagnostics</li>
+<li>Battery Problems</li>
+<li>Clutch & Brakes</li>
+<li>Engine Repair</li>
+<li>Filters & Exhaust</li>
+</ul>
+</div>
+
+<!-- ABOUT -->
+<div class="col-md-3">
+<h5>ABOUT COMPANY</h5>
+<ul>
+<li>About Cardan</li>
+<li>Fleet Maintenance</li>
+<li>Get a Career</li>
+<li>Service Areas</li>
+<li>Free Estimates</li>
+<li>Schedule Inspection</li>
+<li>Our Partners</li>
+</ul>
+</div>
+
+<!-- CONTACT -->
+<div class="col-md-3">
+<h5>GET IN TOUCH</h5>
+
+<div class="contact-box">
+<i>📞</i>
+<div>
+<p>For Repair Support</p>
+<b>+1(810) 799 4660 / 5660</b>
+</div>
+</div>
+
+<div class="contact-box">
+<i>⏰</i>
+<div>
+<p>The Working Hours</p>
+<b>Mon - Sat 9am to 7pm</b>
+</div>
+</div>
+
+<div class="contact-box">
+<i>✉</i>
+<div>
+<p>Send Us Email</p>
+<b>sellingcar@my-domain.com</b>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="bottom">
+(c)2020 <b>CARDAN</b> - Auto Repair Services. All rights reserved.  
+<a href="#">Terms & Conditions</a>
+</div>
+
+</div>
+</footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+</html>

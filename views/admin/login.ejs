@@ -1,0 +1,181 @@
+<!-- Light Sky Blue Gradient Login Page -->
+<style>
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 🔹 Light SkyBlue Gradient Background */
+    background: linear-gradient(135deg, #ccefff, #a3d8ff, #e6f7ff);
+  }
+
+  .login-container {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    padding: 40px 30px;
+    width: 370px;
+    text-align: center;
+  }
+
+  .login-title {
+    margin-bottom: 25px;
+    color: #0077b6;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+    text-align: left;
+    position: relative;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 40px 12px 12px;
+    border: 1px solid #b3e0ff;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #f7fbff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  input:focus {
+    border-color: #3399ff;
+    box-shadow: 0 0 6px rgba(51,153,255,0.4);
+    outline: none;
+    background: #fff;
+  }
+
+  /* 👁 Password toggle */
+  .toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 38px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
+  }
+
+  .custom-btn {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(to right, #66c2ff, #33adff, #80d4ff);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .custom-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 119, 182, 0.3);
+  }
+
+  .back-link {
+    margin-top: 18px;
+    display: inline-block;
+    color: #0077b6;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="login-container">
+  <div class="login-title">Login</div>
+  <form action="/admin/login_process" method="post" >
+    <div class="form-group">
+      <label for="admin_email">Enter your Email</label>
+      <input type="email" id="admin_email" name="admin_email" placeholder="Enter your email" required autocomplete="username">
+    </div>
+
+    <div class="form-group">
+      <label for="admin_password">Password</label>
+      <input type="password" id="admin_password" name="admin_password" placeholder="Enter your password" required autocomplete="current-password">
+      <span class="toggle-password" onclick="togglePassword()">👁</span>
+    </div>
+
+    <button type="submit" class="custom-btn">Login</button>
+  </form>
+  <a href="" class="back-link">← Back to Home</a>
+</div>
+
+
+<% if (typeof success !== 'undefined') { %>
+<style>
+.success-popup{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #d4edda;
+    color: #155724;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    font-weight: 600;
+    z-index: 9999;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+</style>
+
+<div class="success-popup" id="successPopup">
+    <%= success %>
+</div>
+
+<script>
+setTimeout(() => {
+    const popup = document.getElementById("successPopup");
+    if(popup){
+        popup.style.display = "none";
+    }
+}, 3000); // 3 seconds
+</script>
+<% } %>
+
+
+
+<% if (typeof error !== 'undefined') { %>
+<script>
+    alert("<%= error %>");
+</script>
+<% } %>
+
+<script>
+  function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const toggleBtn = document.querySelector('.toggle-password');
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      toggleBtn.textContent = "🙈";
+    } else {
+      passwordInput.type = "password";
+      toggleBtn.textContent = "👁";
+    }
+  }
+</script>
